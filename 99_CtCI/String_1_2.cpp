@@ -7,6 +7,7 @@
 using namespace std;
 
 void reverse(char*);
+void reverse2(char*);
 
 int main()
 {
@@ -15,7 +16,25 @@ int main()
 
   reverse(str1);
   reverse(str2);
+
+  reverse2(str1);
+  reverse2(str2);
   return 0;
+}
+
+void reverse2(char* s)
+{
+    int len = strlen(s);
+    char* p = (char*)malloc(sizeof(char)*len+1);
+    strcpy(p,s);
+    for(int i = 0; i<len/2;i++)
+    {
+        char c = p[i];
+        p[i] = p[len-i-1];
+        p[len-i-1] = c;
+    }
+    printf("%s\n",p);
+    free(p);
 }
 
 void reverse(char* s)
