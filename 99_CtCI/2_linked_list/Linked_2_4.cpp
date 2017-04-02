@@ -54,27 +54,27 @@ int main()
 node* traverse(node* head, node* target) {
 
     class node* mov = nullptr;
-    class node* cur = nullptr;
-    class node* pre = nullptr;
-
-    cur = head;
-    pre = head;
+    class node* cur = head;
+    class node* pre = head;
 
     while(cur != target) {
-          cout<<"read data "<<cur->data<<" ";
-        getchar();
+//          cout<<"read data "<<cur->data<<" ";
+//         getchar();
         if(cur->data > target->data) {
           //backup left
           cout<<"# DEBUG LEFT "<<cur->data<<endl;
           mov = cur;
           pre->next = cur->next;
+          cur = cur->next;
 
           //move right
           mov->next = target->next;
           target->next = mov;
+          print(head);
+        } else {
+          pre = cur;
+          cur = cur->next;
         }
-        pre = cur;
-        cur = cur->next;
     }
 
     while(cur != nullptr) {
@@ -85,12 +85,14 @@ node* traverse(node* head, node* target) {
         //remove cur
         mov = cur;
         pre->next = mov->next;
-
+        cur = cur->next;
         //move left
         mov->next = head;
         head =mov;
+        print(head);
+      } else {
+       cur = cur->next;
       }
-      cur = cur->next;
     }
  return head;
 }
