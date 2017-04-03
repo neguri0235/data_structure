@@ -62,7 +62,7 @@ node* traverse(node* head, node* target) {
 //         getchar();
         if(cur->data > target->data) {
           //backup left
-          cout<<"# DEBUG LEFT "<<cur->data<<endl;
+          //cout<<"# DEBUG LEFT "<<cur->data<<endl;
           mov = cur;
           pre->next = cur->next;
           cur = cur->next;
@@ -70,17 +70,17 @@ node* traverse(node* head, node* target) {
           //move right
           mov->next = target->next;
           target->next = mov;
-          print(head);
+          //print(head);  //debug
         } else {
           pre = cur;
           cur = cur->next;
         }
     }
-
+    pre = target;
     while(cur != nullptr) {
 
       if(cur->data < target->data) {
-        cout<<"# DEBUG RIGHT "<<cur->data<<endl;
+        //cout<<"# DEBUG RIGHT "<<cur->data<<endl;
 
         //remove cur
         mov = cur;
@@ -89,8 +89,9 @@ node* traverse(node* head, node* target) {
         //move left
         mov->next = head;
         head =mov;
-        print(head);
+        // print(head); debug
       } else {
+       pre = cur;
        cur = cur->next;
       }
     }
