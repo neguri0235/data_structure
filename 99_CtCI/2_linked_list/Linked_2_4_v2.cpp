@@ -5,7 +5,7 @@ using namespace std;
 class node {
     public:
     node (int a) : data(a) { next = nullptr;}
-    int getData( ) { return data;}
+   int getData( ) { return data;}
     int data;
     class node* next;
 };
@@ -29,23 +29,44 @@ int main()
       cur = cur->next;
     }
   }
-
+  cout<<"999"<<endl;
   print(head);
 
+  cout<<"lll"<<endl;
   class node* left = nullptr;
   class node* right = nullptr;
+  class node* left_head = nullptr;
 
-  int taget = 8;
-
+  int target = 8;
+  int i = 0;
   while(head != nullptr) {
-    if(head->getData() > target ) {
-
-
+    class node* move = head;
+    head= head->next;
+    cout<<"input "<<i++<<" "<<move->getData()<<"  -> ";
+    if(move->getData() > target ) {
+        cout<<"right"<<endl;
+        if(right == nullptr) {
+            right = move;
+            right->next = nullptr;
+        }else {
+            move->next = right;
+            right = move->next;
+        }
+    }else {
+        cout<<"left"<<endl;
+        if(left_head == nullptr) {
+            left = move;
+            left_head = move;
+        }else{
+            left->next = move;
+            left = left->next;
+        }
     }
-    head = head->next;
   }
+  cout<<"992"<<endl;
+  left->next = right;
 
-
+  print(left_head);
   return 0;
 }
 
@@ -55,6 +76,6 @@ void print(node* head){
     cout<<p->getData()<<" ";
     p = p->next;
   }
-
+  cout<<endl;
 
 }
