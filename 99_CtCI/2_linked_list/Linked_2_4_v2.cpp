@@ -29,10 +29,8 @@ int main()
       cur = cur->next;
     }
   }
-  cout<<"999"<<endl;
   print(head);
 
-  cout<<"lll"<<endl;
   class node* left = nullptr;
   class node* right = nullptr;
   class node* left_head = nullptr;
@@ -42,18 +40,15 @@ int main()
   while(head != nullptr) {
     class node* move = head;
     head= head->next;
-    cout<<"input "<<i++<<" "<<move->getData()<<"  -> ";
     if(move->getData() > target ) {
-        cout<<"right"<<endl;
         if(right == nullptr) {
             right = move;
             right->next = nullptr;
         }else {
             move->next = right;
-            right = move->next;
+            right = move;
         }
     }else {
-        cout<<"left"<<endl;
         if(left_head == nullptr) {
             left = move;
             left_head = move;
@@ -63,7 +58,6 @@ int main()
         }
     }
   }
-  cout<<"992"<<endl;
   left->next = right;
 
   print(left_head);
