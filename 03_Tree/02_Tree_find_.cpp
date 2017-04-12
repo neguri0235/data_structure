@@ -14,8 +14,9 @@ class node {
 void traverse_post_order(node*);
 void traverse_pre_order(node*);
 void traverse_in_order(node*);
-node* find(node*,int);
-
+node* find(node*, int);
+bool remove(node*, int);
+node* recur_find(node*, int);
 int main()
 {
   vector<int> v = {10,2,6,15,18,1,7,12,8,14,9,3};
@@ -67,6 +68,16 @@ int main()
   f = find(root, 13);
   if( f == nullptr) cout<<"can't find 13"<<endl;
     else cout<<f->getData()<<endl;
+
+
+  f= recur_find(root,8);
+  if(f == nullptr) cout<<"can't fild 8"<<endl;
+    else cout<<f->getData()<<endl;
+
+  f = recur_find(root, 13);
+  if( f == nullptr) cout<<"can't find 13"<<endl;
+    else cout<<f->getData()<<endl;
+
 // delete node
 
   return 0;
@@ -97,9 +108,8 @@ node* find(node* _r, int _t) {
  class node* p = _r;
 
  while(p != nullptr) {
-  cout<<"p "<<p->getData()<< " ";
+//  cout<<"p "<<p->getData()<< " ";
   if(p->getData() == _t) return p;
-
   else if(p->getData() > _t) {
   // move right
     p = p->right;
@@ -107,11 +117,28 @@ node* find(node* _r, int _t) {
   // move left
     p = p->left;
   }
-
-
-
  }
+  return nullptr;
+}
 
 
- return nullptr;
+bool remove(node* _r, int _t) {
+  class node* _d = _r;
+  class node* _p = _r;
+  while(_d != nullptr) {
+  _p = _d;
+  if(_d->getData() == _t) break;
+  if(_d->getData() > _t) _d = _d->right;
+    else _d = _d->left;
+  }
+  if(_d == nullptr) return false;
+}
+
+node* recur_find(node* _r, int _t) {
+    if(_r == nullptr || _r->getData() == _t) return _r;
+    else if(_r->getData()> _t) {
+        recur_find(_r->right, _t);
+    } else {
+        recur_find(_r->left, _t);
+    }
 }
