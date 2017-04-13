@@ -14,6 +14,7 @@ class node {
 void traverse_post_order(node*);
 void traverse_pre_order(node*);
 void traverse_in_order(node*);
+void traverse_bfs(node*);
 
 int main()
 {
@@ -57,6 +58,7 @@ int main()
   traverse_in_order(root); cout<<endl;
   traverse_pre_order(root); cout<<endl;
   traverse_post_order(root); cout<<endl;
+  traverse_bfs(root); cout<<endl;
   return 0;
 }
 
@@ -79,4 +81,16 @@ void traverse_post_order(node* r) {
   traverse_post_order(r->left);
   traverse_post_order(r->right);
   cout<<r->getData()<<" ";
+}
+
+void traverse_bfs(node* r){
+  vector<node*> v;
+  v.push_back(r);
+  while(v.empty() == false) {
+      auto _r = v.front();
+      if(_r->left != nullptr) v.push_back(_r->left);
+      if(_r->right != nullptr) v.push_back(_r->right);
+       cout<<_r->getData()<<" ";
+       v.erase(v.begin());
+      }
 }
